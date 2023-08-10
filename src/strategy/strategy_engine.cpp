@@ -52,7 +52,7 @@ int main() {
   if (!strategy_ctor) {
     char* error_str = dlerror();
     if (error_str) {
-      LOG_ERROR("CreateStrategy not found. error: {}", error_str);
+      LOG_ERROR(" not found. error: {}", error_str);
       exit(EXIT_FAILURE);
     }
   }
@@ -75,5 +75,5 @@ int main() {
   }
 
   LOG_ERROR("strategy config not found. strategy name: {}", strategy_id);
-  exit(EXIT_FAILURE);
+  exit(EXIT_FAILURE); 
 }

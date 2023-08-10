@@ -119,9 +119,9 @@ class Gateway {
   void OnTick(const TickData& tick_data);
 
  private:
-  OrderRspRB rsp_rb_;
-  QryReultRB qry_result_rb_;
-  TickRB tick_rb_;
+  OrderRspRB rsp_rb_;//回报
+  QryReultRB qry_result_rb_;//查询
+  TickRB tick_rb_;//行情
 };
 
 inline void Gateway::OnOrderAccepted(const OrderAcceptedRsp& rsp) {

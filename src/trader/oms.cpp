@@ -21,18 +21,19 @@ bool OrderManagementSystem::Init(const FlareTraderConfig& config) {
 
   config_ = &config;
 
+  //加载合约信息
   if (!InitContractTable()) {
     return false;
   }
-
+  //初始化redis连接
   if (!InitTraderDBConn()) {
     return false;
   }
-
+  //共享内存 回报数据返回初始化
   if (!InitMQ()) {
     return false;
   }
-
+  //接口初始化
   if (!InitGateway()) {
     return false;
   }
@@ -56,7 +57,7 @@ bool OrderManagementSystem::Init(const FlareTraderConfig& config) {
   if (!InitRMS()) {
     return false;
   }
-
+  //订阅行情
   if (!SubscribeMarketData()) {
     return false;
   }
