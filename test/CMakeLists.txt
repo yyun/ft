@@ -6,10 +6,11 @@ mark_as_advanced(
     gtest_disable_pthreads gtest_force_shared_crt gtest_hide_internal_symbols
 )
 
+link_directories("/usr/local/lib")
 add_library(ft_test ../src/trader/risk/common/self_trade_risk.cpp
                     ../src/trader/risk/risk_rule.cpp)
 target_include_directories(ft_test PUBLIC ../src)
-target_link_libraries(ft_test PUBLIC ft::ft_header ft::utils fmt)
+target_link_libraries(ft_test PUBLIC ft::ft_header ft::utils fmt event event_pthreads)
 
 set_target_properties(gtest PROPERTIES FOLDER third_party)
 set_target_properties(gtest_main PROPERTIES FOLDER third_party)
@@ -32,6 +33,11 @@ macro(package_add_test TESTNAME FILES LIBRARIES)
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 endmacro()
 
+
+package_add_test(test_redis_get test_redis_get.cpp ft_test)
+package_add_test(test_redis_set test_redis_set.cpp ft_test)
+package_add_test(test_redis_pub test_redis_pub.cpp ft_test)
+package_add_test(test_redis_sub test_redis_sub.cpp ft_test)
 package_add_test(test_cereal test_cereal.cpp ft_test)
 package_add_test(test_datetime test_datetime.cpp ft_test)
 package_add_test(test_decimal_price test_decimal_price.cpp ft_test)

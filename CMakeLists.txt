@@ -11,7 +11,7 @@ set(CMAKE_BUILD_TYPE "Debug")
 set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-stringop-truncation")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-stringop-truncation -Wunused-variable")
 
 message(STATUS "CMAKE_MODULE_PATH=${CMAKE_MODULE_PATH}")
 
@@ -62,6 +62,7 @@ include(hiredis)
 include(yaml-cpp)
 include(libuv)
 include(nlohmann_json)
+link_directories("/usr/local/lib")
 
 add_library(cereal INTERFACE)
 target_include_directories(cereal INTERFACE "third_party/cereal/include")

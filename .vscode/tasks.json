@@ -12,12 +12,11 @@
 				"--build",
 				"/home/yyun/ft/build",
 				"--config",
-				"-g",
+				"DEBUG",
 				"--target",
 				"all",
 				"-j",
 				"6",
-				"--"
 			]
 		},
 		{
