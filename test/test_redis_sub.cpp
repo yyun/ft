@@ -58,7 +58,7 @@ struct sse_hpf_exe_pkt
 #include <adapters/libevent.h>
 
   int n_sub=0;
-    const int n = 100000;
+    const int n = 50000;
 
 void getCallback(redisAsyncContext *c, void *r, void *privdata) {
     redisReply *reply =reinterpret_cast<redisReply*>(r);
@@ -93,7 +93,7 @@ void getCallback(redisAsyncContext *c, void *r, void *privdata) {
              sse_hpf_exe_pkt *info =reinterpret_cast<sse_hpf_exe_pkt*>(reply->element[2]->str);
             //  printf("quote data:%d\n",info->m_channel);
             n_sub++;
-            //  if(n_sub==n)
+             if(n_sub==n)
               std::cout<<info->m_channel <<","<<duration_cast<std::chrono::milliseconds>(system_clock::now().time_since_epoch()).count()<< ","<< n_sub<<std::endl;
         }
  
@@ -131,7 +131,7 @@ TEST(REDISTest, Case_0) {
     redisOptions options = {0};
     REDIS_OPTIONS_SET_TCP(&options, "192.168.148.130", 6379);
     struct timeval tv = {0};
-    tv.tv_sec = 10;
+    tv.tv_sec = 1;
     options.connect_timeout = &tv;
 
 

@@ -33,7 +33,8 @@ macro(package_add_test TESTNAME FILES LIBRARIES)
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 endmacro()
 
-
+package_add_test(test_ring_buffer_pop test_ring_buffer_pop.cpp ft_test)
+package_add_test(test_ring_buffer_push test_ring_buffer_push.cpp ft_test)
 package_add_test(test_redis_get test_redis_get.cpp ft_test)
 package_add_test(test_redis_set test_redis_set.cpp ft_test)
 package_add_test(test_redis_pub test_redis_pub.cpp ft_test)

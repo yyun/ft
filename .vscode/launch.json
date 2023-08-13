@@ -10,7 +10,7 @@
             "request": "launch",
             // "program": "/home/yyun/ft/build/bin/contract_collector",
             // "program": "/home/yyun/ft/build/bin/ft_trader",
-            "program": "/home/yyun/ft/build/bin/test_redis_get",
+            "program": "/home/yyun/ft/build/bin/test_ring_buffer_pop",
             "args": [
                 "--config=./config/config.yml"
             ],
