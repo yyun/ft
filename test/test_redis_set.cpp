@@ -6,7 +6,6 @@
 #include<chrono>
 #include "ft/utils/ring_buffer.h"
 #include "ft/base/market_data.h"
-#include "event2/thread.h"
 
 using namespace std::chrono;
 using ft::RingBuffer;

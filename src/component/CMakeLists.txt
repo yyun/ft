@@ -15,4 +15,4 @@ target_link_libraries(component PUBLIC ft::ft_header ft::base cereal hiredis fmt
                                        uv nlohmann_json::nlohmann_json)
 
 add_subdirectory(yijinjing)
-target_link_libraries(yijinjing PUBLIC ft::ft_header spdlog)
+target_link_libraries(yijinjing PUBLIC ft::ft_header spdlog stdc++fs)

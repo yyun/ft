@@ -48,7 +48,7 @@ typedef unsigned int uint;
 #define YJJ_NAMESPACE_END };                               /**< end of yjj namespace */
 #define USING_YJJ_NAMESPACE using namespace yijinjing;
 
-#define JOURNAL_PREFIX string("yjj")        /**< journal file prefix */
+#define JOURNAL_PREFIX string("ipc")        /**< journal file prefix */
 #define JOURNAL_SUFFIX string("journal")    /**< journal file suffix */
 
 /** fast type convert for moving address forward */

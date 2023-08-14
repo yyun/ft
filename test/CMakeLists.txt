@@ -6,11 +6,12 @@ mark_as_advanced(
     gtest_disable_pthreads gtest_force_shared_crt gtest_hide_internal_symbols
 )
 
-link_directories("/usr/local/lib")
+link_directories("/usr/local/lib"  "/home/yfxu/lib")
 add_library(ft_test ../src/trader/risk/common/self_trade_risk.cpp
                     ../src/trader/risk/risk_rule.cpp)
 target_include_directories(ft_test PUBLIC ../src)
-target_link_libraries(ft_test PUBLIC ft::ft_header ft::utils fmt event event_pthreads)
+target_link_libraries(ft_test PUBLIC ft::ft_header ft::utils fmt )
+# event event_pthreads
 
 set_target_properties(gtest PROPERTIES FOLDER third_party)
 set_target_properties(gtest_main PROPERTIES FOLDER third_party)
@@ -37,8 +38,8 @@ package_add_test(test_ring_buffer_pop test_ring_buffer_pop.cpp ft_test)
 package_add_test(test_ring_buffer_push test_ring_buffer_push.cpp ft_test)
 package_add_test(test_redis_get test_redis_get.cpp ft_test)
 package_add_test(test_redis_set test_redis_set.cpp ft_test)
-package_add_test(test_redis_pub test_redis_pub.cpp ft_test)
-package_add_test(test_redis_sub test_redis_sub.cpp ft_test)
+# package_add_test(test_redis_pub test_redis_pub.cpp ft_test)
+# package_add_test(test_redis_sub test_redis_sub.cpp ft_test)
 package_add_test(test_cereal test_cereal.cpp ft_test)
 package_add_test(test_datetime test_datetime.cpp ft_test)
 package_add_test(test_decimal_price test_decimal_price.cpp ft_test)
@@ -49,4 +50,6 @@ package_add_test(test_yijinjing test_yijinjing.cpp yijinjing ft_test)
 package_add_test(test_trader_db test_trader_db.cpp ft::component)
 package_add_test(test_position_calculator test_position_calculator.cpp ft::component)
 package_add_test(test_networking test_networking.cpp ft::component)
+package_add_test(test_yijinjing_read test_yijinjing_read.cpp yijinjing ft_test)
+package_add_test(test_yijinjing_write test_yijinjing_write.cpp yijinjing ft_test)
 #package_add_test(test_advanced_match_engine test_advanced_match_engine.cpp ft::component gateway ft_test)

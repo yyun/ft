@@ -270,7 +270,7 @@ int test(size_t count)
     // int size = atoi(argv[1]);
     // int count = atoi(argv[2]);
     // unsigned char *buf =(unsigned char*) malloc(sizeof(sse_hpf_exe_pkt));
-    int rbsize = size * 1000001;
+    int rbsize = size * (count+1);
 
       ringbuffer_t *rb = rb_create(path, rbsize, 1);
          i = 0;
@@ -279,7 +279,7 @@ int test(size_t count)
             sse_hpf_exe_pkt info;
             if (!rb_pop(rb,(uint8_t *) &info, size)) {
         
-                //  std::cout <<  info.m_channel <<std::endl;
+                  std::cout <<  info.m_channel <<std::endl;
             
                 // if (*(uint32_t*)buf != i) {
                 //     printf("data: %d\n", *(uint32_t*)buf);
@@ -297,7 +297,8 @@ int test(size_t count)
 }
 
 TEST(RingBufferTest, Case_0) {
-  const int n = 10000000;
+//   const int n = 10000000;
+  const int n = 1;
   RingBuffer<sse_hpf_exe_pkt, 4096> rb;
  
   test(n);

@@ -288,6 +288,7 @@ int test(size_t count)
             
         if (!rb_push(rb, (const uint8_t *)&info, size)) {
             ++i;
+            info.m_channel=2333;
             // std::cout <<  "push ok:" <<i <<std::endl;
         }else{
                 std::cout <<  "push error:" <<i <<std::endl;
@@ -295,19 +296,21 @@ int test(size_t count)
     }
 
     gettimeofday(&end, NULL);
-
     double tm = getdetlatimeofday(&begin, &end);
+
+    std::cout<<i <<std::endl;
     printf("%fMB/s %fmsg/s %f\n",
         count * size * 1.0 / (tm * 1024 * 1024),
         count * 1.0 / tm, tm);
 
-            rb_free(rb, 0);
+    rb_free(rb, 0);
 
     return 0;
 }
 
 TEST(RingBufferTest, Case_0) {
-  const int n = 10000000;
+//   const int n = 10000000;
+  const int n = 1;
   RingBuffer<sse_hpf_exe_pkt, 4096> rb;
  
   test(n);

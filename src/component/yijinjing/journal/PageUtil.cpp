@@ -31,7 +31,7 @@
 
 #include <algorithm>
 #include <cstdio>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <regex>
 #include <sstream>
 
@@ -74,10 +74,10 @@ short PageUtil::ExtractPageNum(const string& filename, const string& jname) {
 
 vector<short> PageUtil::GetPageNums(const string& dir, const string& jname) {
   const string namePattern = GetPageFileNamePattern(jname);
-  std::filesystem::path p(dir);
+  std::experimental::filesystem::path p(dir);
   std::regex pattern(namePattern);
   vector<short> res;
-  for (auto& file : std::filesystem::directory_iterator(p)) {
+  for (auto& file : std::experimental::filesystem::directory_iterator(p)) {
     const string filename = file.path().filename().string();
     if (std::regex_match(filename.begin(), filename.end(), pattern))
       res.push_back(PageUtil::ExtractPageNum(filename, jname));
@@ -88,17 +88,17 @@ vector<short> PageUtil::GetPageNums(const string& dir, const string& jname) {
 
 void PageUtil::RemoveJournal(const string& dir, const string& jname) {
   const string namePattern = GetPageFileNamePattern(jname);
-  std::filesystem::path p(dir);
+  std::experimental::filesystem::path p(dir);
   std::regex pattern(namePattern);
   vector<string> res;
-  for (auto& file : std::filesystem::directory_iterator(p)) {
+  for (auto& file : std::experimental::filesystem::directory_iterator(p)) {
     const string filename = file.path().filename().string();
     if (std::regex_match(filename.begin(), filename.end(), pattern))
       res.push_back(file.path().string());
   }
   for (auto& file : res) {
     ///        printf("removing journal: %s\n", file.c_str());
-    std::filesystem::remove(file);
+    std::experimental::filesystem::remove(file);
   }
 }
 
@@ -128,10 +128,10 @@ PageHeader PageUtil::GetPageHeader(const string& dir, const string& jname, short
  */
 
 void* PageUtil::LoadPageBuffer(const string& path, int size, bool isWriting, bool quickMode) {
-  std::filesystem::path page_path = path;
-  std::filesystem::path page_folder_path = page_path.parent_path();
-  if (!std::filesystem::exists(page_folder_path)) {
-    std::filesystem::create_directories(page_folder_path);
+  std::experimental::filesystem::path page_path = path;
+  std::experimental::filesystem::path page_folder_path = page_path.parent_path();
+  if (!std::experimental::filesystem::exists(page_folder_path)) {
+    std::experimental::filesystem::create_directories(page_folder_path);
   }
 
   int fd = open(path.c_str(), (isWriting) ? (O_RDWR | O_CREAT) : O_RDONLY, (mode_t)0600);
