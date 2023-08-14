@@ -297,7 +297,7 @@ int test(size_t count)
 }
 
 TEST(RingBufferTest, Case_0) {
-  const int n = 10;
+  const int n = 10000000;
   RingBuffer<sse_hpf_exe_pkt, 4096> rb;
  
   test(n);

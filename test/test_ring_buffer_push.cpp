@@ -140,8 +140,8 @@ ringbuffer_t *rb_create(const char *name, uint32_t sz, int master) {
     }
 
     ringbuffer_t *rb = (ringbuffer_t*)addr;
-    if (rb->shm_name[0]=='\0'){
-        rb->size = sz;
+    rb->size = sz;
+    if (rb->shm_name[0]=='\0'){    
         strncpy(rb->shm_name, name, SHM_NAME_LEN-1);
         rb->head = rb->tail = 0;
     }
@@ -273,7 +273,7 @@ int test(size_t count)
     // int size = atoi(argv[1]);
     // int count = atoi(argv[2]);
     // unsigned char *buf =(unsigned char*) malloc(sizeof(sse_hpf_exe_pkt));
-    int rbsize = size * 1000001;
+    int rbsize = size * (count+1);
 
     gettimeofday(&begin, NULL);
     ringbuffer_t *rb = rb_create(path, rbsize, 0);
@@ -296,7 +296,6 @@ int test(size_t count)
 
     gettimeofday(&end, NULL);
 
-
     double tm = getdetlatimeofday(&begin, &end);
     printf("%fMB/s %fmsg/s %f\n",
         count * size * 1.0 / (tm * 1024 * 1024),
@@ -308,7 +307,7 @@ int test(size_t count)
 }
 
 TEST(RingBufferTest, Case_0) {
-  const int n = 10;
+  const int n = 10000000;
   RingBuffer<sse_hpf_exe_pkt, 4096> rb;
  
   test(n);
