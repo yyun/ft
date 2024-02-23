@@ -70,8 +70,8 @@ class NanoTimer {
  * util function to utilize NanoTimer
  * @return current nano time in int64_t (unix-timestamp * 1e9 + nano-part)
  */
-inline int64_t getNanoTime() { return NanoTimer::getInstance()->getNano(); }
 
+inline int64_t getNanoTime() { return NanoTimer::getInstance()->getNano(); }
 /**
  * util function to utilize NanoTimer
  * @return second diff in int64_t for nano time matching

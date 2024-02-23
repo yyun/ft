@@ -36,10 +36,10 @@ class IPageSocketUtil {
   /** return logger */
   virtual std::shared_ptr<spdlog::logger> get_logger() const = 0;
   /** return journal index in comm file */
-  virtual int reg_journal(const string& clientName) = 0;
+  virtual uint64_t reg_journal(const string& clientName) = 0;
   /** return true if this client exists, and fill in commfile, size of commfile, hash code of this
    * client */
-  virtual bool reg_client(string& commFile, int& fileSize, int& hashCode, const string& clientName,
+  virtual bool reg_client(string& commFile, uint64_t& fileSize, int& hashCode, const string& clientName,
                           int pid, bool isWriter) = 0;
   /** exit client */
   virtual void exit_client(const string& clientName, int hashCode, bool needHashCheck) = 0;

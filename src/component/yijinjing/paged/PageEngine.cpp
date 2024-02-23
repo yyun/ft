@@ -235,7 +235,7 @@ bool PageEngine::remove_task_by_name(const string& taskName) {
 
 void PageEngine::start_socket() { PageSocketHandler::getInstance()->run(this); }
 
-int PageEngine::reg_journal(const string& clientName) {
+uint64_t PageEngine::reg_journal(const string& clientName) {
   size_t idx = 0;
   for (; idx < MAX_COMM_USER_NUMBER; idx++)
     if (GET_COMM_MSG(commBuffer, idx)->status == PAGED_COMM_RAW) break;
@@ -259,7 +259,7 @@ int PageEngine::reg_journal(const string& clientName) {
   return idx;
 }
 
-bool PageEngine::reg_client(string& _commFile, int& fileSize, int& hashCode,
+bool PageEngine::reg_client(string& _commFile, uint64_t& fileSize, int& hashCode,
                             const string& clientName, int pid, bool isWriter) {
   spdlog::info("[RegClient] (name) {} (pid) {} (writer?) {}", clientName, pid, isWriter);
   if (clientJournals.find(clientName) != clientJournals.end()) {

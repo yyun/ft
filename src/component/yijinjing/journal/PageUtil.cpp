@@ -127,7 +127,7 @@ PageHeader PageUtil::GetPageHeader(const string& dir, const string& jname, short
  * memory manipulation (no service)
  */
 
-void* PageUtil::LoadPageBuffer(const string& path, int size, bool isWriting, bool quickMode) {
+void* PageUtil::LoadPageBuffer(const string& path, uint64_t size, bool isWriting, bool quickMode) {
   std::experimental::filesystem::path page_path = path;
   std::experimental::filesystem::path page_folder_path = page_path.parent_path();
   if (!std::experimental::filesystem::exists(page_folder_path)) {
@@ -175,7 +175,7 @@ void* PageUtil::LoadPageBuffer(const string& path, int size, bool isWriting, boo
   return buffer;
 }
 
-void PageUtil::ReleasePageBuffer(void* buffer, int size, bool quickMode) {
+void PageUtil::ReleasePageBuffer(void* buffer, uint64_t size, bool quickMode) {
   // unlock and unmap
   if (!quickMode && munlock(buffer, size) != 0) {
     perror("ERROR in munlock");

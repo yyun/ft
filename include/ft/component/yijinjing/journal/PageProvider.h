@@ -41,7 +41,7 @@ class PageProvider {
 
   const string client_name;
   void* comm_buffer;
-  int hash_code;
+  uint64_t hash_code;
 
  public:
   /** return true if this is for writing */
@@ -56,14 +56,14 @@ class PageProvider {
   PageProvider(const string& clientName, bool isWriting);
 
   /** register journal when added into JournalHandler */
-  int register_journal(const string& dir, const string& jname);
+  uint64_t register_journal(const string& dir, const string& jname);
   /** exit client after JournalHandler is released */
   void exit_client();
 
   /** return wrapped Page via directory / journal short name / serviceIdx assigned / page number */
-  PagePtr getPage(const string& dir, const string& jname, int serviceIdx, short pageNum);
+  PagePtr getPage(const string& dir, const string& jname, uint64_t serviceIdx, short pageNum);
   /** release page after using */
-  void releasePage(void* buffer, int size, int serviceIdx);
+  void releasePage(void* buffer, uint64_t size, uint64_t serviceIdx);
 };
 
 DECLARE_PTR(PageProvider);

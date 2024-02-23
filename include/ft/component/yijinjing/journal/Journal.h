@@ -41,7 +41,7 @@ class Journal {
   /** page provider for further page acquire / release */
   PageProviderPtr pageProvider;
   /** service index is allocated by provider, and will be utilized when asking page provider */
-  int serviceIdx;
+  uint64_t serviceIdx;
   /** basic information, directory path */
   string directory;
   /** basic information, journal short name */
@@ -57,7 +57,7 @@ class Journal {
 
  public:
   /** the only entrance of creating a Journal */
-  static JournalPtr create(const string& dir, const string& jname, int serviceIdx,
+  static JournalPtr create(const string& dir, const string& jname, uint64_t serviceIdx,
                            PageProviderPtr& provider);
 
   /** expire this journal, won't get any frame until reset by seekTime */

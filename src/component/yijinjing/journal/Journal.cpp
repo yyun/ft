@@ -27,7 +27,7 @@
 
 USING_YJJ_NAMESPACE
 
-JournalPtr Journal::create(const string &dir, const string &jname, int serviceIdx,
+JournalPtr Journal::create(const string &dir, const string &jname, uint64_t serviceIdx,
                            PageProviderPtr &provider) {
   JournalPtr jp = JournalPtr(new Journal());
   jp->pageProvider = provider;

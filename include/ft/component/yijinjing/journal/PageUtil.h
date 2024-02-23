@@ -41,11 +41,11 @@ class PageUtil {
    *  whether to write has to be specified in "isWriting"
    *  if quickMode==True, no locking; if quickMode==False, mlock the memory for performance
    * the address of memory is returned */
-  static void* LoadPageBuffer(const string& path, int size, bool isWriting, bool quickMode);
+  static void* LoadPageBuffer(const string& path, uint64_t size, bool isWriting, bool quickMode);
   /** direct memory manipulation without service
    * release page buffer, buffer and size needs to be specified.
    *  if quickMode==True, no unlocking; if quickMode==False, munlock the memory */
-  static void ReleasePageBuffer(void* buffer, int size, bool quickMode);
+  static void ReleasePageBuffer(void* buffer, uint64_t size, bool quickMode);
 
   // name / pattern
   /** generate proper yjj file name by necessary information */

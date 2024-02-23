@@ -37,10 +37,10 @@ const int64_t TIME_FROM_FIRST = 0;
 const int64_t TIME_TO_LAST = -1;
 
 /** size related */
-const int KB = 1024;
-const int MB = KB * KB;
-const int JOURNAL_PAGE_SIZE = 128 * MB;
-const int PAGE_MIN_HEADROOM = 2 * MB;
+const uint64_t KB = 1024;
+const uint64_t MB = KB * KB;
+const uint64_t JOURNAL_PAGE_SIZE = 2048*4 * MB;
+const uint64_t PAGE_MIN_HEADROOM = 2 * MB;
 
 
 

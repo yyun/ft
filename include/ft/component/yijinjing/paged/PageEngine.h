@@ -61,9 +61,9 @@ struct PageClientInfo {
   /** true if this writer is associated with a strategy */
   bool is_strategy;
   /** start rid of the strategy (strategy only) */
-  int rid_start;
+  uint64_t rid_start;
   /** end rid of the strategy (strategy only) */
-  int rid_end;
+  uint64_t rid_end;
   /** all sources of trade engine that registered (strategy only) */
   vector<short> trade_engine_vec;
 };
@@ -116,8 +116,8 @@ class PageEngine : public IPageSocketUtil {
  public:
   // functions required by IPageSocketUtil
   std::shared_ptr<spdlog::logger> get_logger() const { return logger; }
-  int reg_journal(const string& clientName);
-  bool reg_client(string& commFile, int& fileSize, int& hashCode, const string& clientName, int pid,
+  uint64_t reg_journal(const string& clientName);
+  bool reg_client(string& commFile, uint64_t& fileSize, int& hashCode, const string& clientName, int pid,
                   bool isWriter);
   void exit_client(const string& clientName, int hashCode, bool needHashCheck);
   void acquire_mutex();
@@ -130,8 +130,8 @@ class PageEngine : public IPageSocketUtil {
   string commFile;  /**< comm file linked to memory */
 
   size_t maxIdx;              /**< max index of current assigned comm block */
-  int taskFreq;               /**< task frequency in microseconds */
-  int commFreq;               /**< comm frequency in microseconds */
+  uint64_t taskFreq;               /**< task frequency in microseconds */
+  uint64_t commFreq;               /**< comm frequency in microseconds */
   volatile bool comm_running; /**< comm buffer checking thread is running */
 
   PstTempPagePtr task_temppage;

@@ -10,8 +10,8 @@
             "request": "launch",
             // "program": "/home/yyun/ft/build/bin/contract_collector",
             // "program": "/home/yyun/ft/build/bin/ft_trader",
-            // "program": "/home/yyun/ft/build/bin/test_yijinjing",
-            "program": "${workspaceFolder}/build/bin/test_ring_buffer_push",
+            "program": "${workspaceFolder}/build/bin/test_yijinjing",
+            // "program": "${workspaceFolder}/build/bin/test_ring_buffer",
             "args": [
                 "--config=./config/config.yml"
             ],

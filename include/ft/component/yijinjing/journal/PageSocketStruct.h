@@ -56,9 +56,9 @@ struct PagedSocketRequest {
   /** name utilized for CLIENT / JOURNAL / STRATEGY */
   char name[JOURNAL_SHORT_NAME_MAX_LENGTH];
   /** process id (only utilized when registering client) */
-  int pid;
+  uint64_t pid;
   /** process id (only take effect when exiting client) */
-  int hash_code;
+  uint64_t hash_code;
   /** source id (only take effect when login trade engine) */
   short source;
 
@@ -88,21 +88,21 @@ struct PagedSocketRspClient : public PagedSocketResponse {
   /** comm_file is provided for further page usage */
   char comm_file[JOURNAL_FOLDER_MAX_LENGTH];
   /** size of comm_file */
-  int file_size;
+  uint64_t file_size;
   /** hash code of this client */
-  int hash_code;
+  uint64_t hash_code;
 };
 
 struct PagedSocketRspJournal : public PagedSocketResponse {
   /** the index in the comm_file */
-  int comm_idx;
+  uint64_t comm_idx;
 };
 
 struct PagedSocketRspStrategy : public PagedSocketResponse {
   /** start of request id */
-  int rid_start;
+  uint64_t rid_start;
   /** end of request id */
-  int rid_end;
+  uint64_t rid_end;
 };
 
 YJJ_NAMESPACE_END

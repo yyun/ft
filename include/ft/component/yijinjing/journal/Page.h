@@ -42,9 +42,9 @@ class Page {
   /** address of mmap-file associated with this page */
   void* const buffer;
   /** current position in page */
-  int position;
+  uint64_t position;
   /** number index of current frame in the page */
-  int frameNum;
+  uint64_t frameNum;
   /** number of the page for the journal */
   short pageNum;
 

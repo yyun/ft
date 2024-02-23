@@ -32,7 +32,7 @@ void PageProvider::register_client() {}
 
 void PageProvider::exit_client() {}
 
-int PageProvider::register_journal(const string& dir, const string& jname) { return -1; };
+uint64_t PageProvider::register_journal(const string& dir, const string& jname) { return -1; };
 
 PageProvider::PageProvider(const string& clientName, bool isWriting)
     : is_writer(isWriting), client_name(clientName), comm_buffer(nullptr), hash_code(0) {
@@ -40,11 +40,11 @@ PageProvider::PageProvider(const string& clientName, bool isWriting)
   //  revise_allowed = is_writer || reviseAllowed;
 }
 
-PagePtr PageProvider::getPage(const string& dir, const string& jname, int serviceIdx,
+PagePtr PageProvider::getPage(const string& dir, const string& jname, uint64_t serviceIdx,
                               short pageNum) {
   return Page::load(dir, jname, pageNum, is_writer, false);
 }
 
-void PageProvider::releasePage(void* buffer, int size, int serviceIdx) {
+void PageProvider::releasePage(void* buffer, uint64_t size, uint64_t serviceIdx) {
   PageUtil::ReleasePageBuffer(buffer, size, false);
 }

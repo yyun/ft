@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: yyun
+ * @Date: 2023-08-14 11:33:14
+ * @LastEditTime: 2023-09-25 17:09:49
+ * @LastEditors: yyun
+ */
 // Copyright [2020] <Copyright Kevin, kevin.lau.gd@gmail.com>
 
 #ifndef FT_INCLUDE_FT_UTILS_PROTOCOL_UTILS_H_

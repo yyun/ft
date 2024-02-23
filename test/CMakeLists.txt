@@ -6,11 +6,20 @@ mark_as_advanced(
     gtest_disable_pthreads gtest_force_shared_crt gtest_hide_internal_symbols
 )
 
-link_directories("/usr/local/lib"  "/home/yfxu/lib")
+add_library(stdlib1 SHARED IMPORTED )
+set_target_properties(stdlib1 PROPERTIES   IMPORTED_LOCATION "/home/yfxu/lib/libthrift.so.0.15.0")
+
+add_library(stdlib SHARED IMPORTED )
+set_target_properties(stdlib PROPERTIES   IMPORTED_LOCATION "/home/yfxu/lib/libstdc++.so.6")
+set(mLIBS  stdlib stdlib1)
+ 
+
+include_directories("/home/yfxu/hdf5-1.10.10/src" "/home/yfxu/hdf5-1.10.10/c++/src"  "/home/yfxu/hdf5-1.10.10/hl/src" "/home/yfxu/apache-arrow-13.0.0/cpp/src")
+link_directories("/home/yfxu/lib" )
 add_library(ft_test ../src/trader/risk/common/self_trade_risk.cpp
                     ../src/trader/risk/risk_rule.cpp)
 target_include_directories(ft_test PUBLIC ../src)
-target_link_libraries(ft_test PUBLIC ft::ft_header ft::utils fmt )
+target_link_libraries(ft_test PUBLIC ft::ft_header ft::utils fmt hdf5 hdf5_hl arrow parquet ${mLIBS})
 # event event_pthreads
 
 set_target_properties(gtest PROPERTIES FOLDER third_party)
@@ -34,6 +43,8 @@ macro(package_add_test TESTNAME FILES LIBRARIES)
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 endmacro()
 
+package_add_test(test_arrow test_arrow.cpp ft_test)
+package_add_test(test_hdf test_hdf.cpp ft_test)
 package_add_test(test_ring_buffer_pop test_ring_buffer_pop.cpp ft_test)
 package_add_test(test_ring_buffer_push test_ring_buffer_push.cpp ft_test)
 package_add_test(test_redis_get test_redis_get.cpp ft_test)

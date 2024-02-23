@@ -48,9 +48,9 @@ struct PageHeader {
   /** nano time of when the page closed */
   int64_t close_nano;
   /** how many frame in this page (only filled when closed) */
-  int frame_num;
+  uint64_t frame_num;
   /** pos of last frame */
-  int last_pos;
+  uint64_t last_pos;
   /** version of frame header (using reserve)*/
   short frame_version;
   /** reserve space */
